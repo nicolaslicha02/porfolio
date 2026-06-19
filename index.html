@@ -7,71 +7,103 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
+    html { font-size: 62.5%; scroll-behavior: smooth; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #0a0f1e;
-      --surface:  #111827;
-      --card:     #161d2e;
-      --border:   #1e2d45;
-      --accent:   #38bdf8;
-      --accent2:  #818cf8;
-      --green:    #34d399;
-      --text:     #e2e8f0;
-      --muted:    #64748b;
-      --mono:     'JetBrains Mono', monospace;
-      --sans:     'Space Grotesk', sans-serif;
+      --bg:      #0a0f1e;
+      --surface: #111827;
+      --card:    #161d2e;
+      --border:  #1e2d45;
+      --accent:  #38bdf8;
+      --accent2: #818cf8;
+      --green:   #34d399;
+      --text:    #e2e8f0;
+      --muted:   #64748b;
+      --mono:    'JetBrains Mono', monospace;
+      --sans:    'Space Grotesk', sans-serif;
     }
-
-    html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--sans);
-      font-size: 15px;
+      font-size: 1.5rem;
       line-height: 1.65;
       min-height: 100vh;
+    }
+
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      position: fixed;
+      top: 1.6rem;
+      right: 1.6rem;
+      z-index: 100;
+      display: flex;
+      background: var(--surface);
+      border: 0.1rem solid var(--border);
+      border-radius: 9.9rem;
+      overflow: hidden;
+      font-family: var(--mono);
+      font-size: 1.2rem;
+    }
+
+    .lang-btn {
+      padding: 0.6rem 1.4rem;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 1.2rem;
+      font-weight: 500;
+      transition: color .2s, background .2s;
+      letter-spacing: .05em;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: #0a0f1e;
     }
 
     /* ── HEADER ── */
     header {
       position: relative;
       overflow: hidden;
-      padding: 80px 24px 64px;
+      padding: 8rem 2.4rem 6.4rem;
       text-align: center;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 0.1rem solid var(--border);
     }
 
     .grid-bg {
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(56,189,248,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56,189,248,.06) 1px, transparent 1px);
-      background-size: 40px 40px;
+        linear-gradient(rgba(56,189,248,.06) 0.1rem, transparent 0.1rem),
+        linear-gradient(90deg, rgba(56,189,248,.06) 0.1rem, transparent 0.1rem);
+      background-size: 4rem 4rem;
       mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
     }
 
     .glow {
       position: absolute;
-      width: 480px; height: 480px;
+      width: 48rem; height: 48rem;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(56,189,248,.12) 0%, transparent 70%);
-      top: -120px; left: 50%; transform: translateX(-50%);
+      top: -12rem; left: 50%; transform: translateX(-50%);
       pointer-events: none;
     }
 
     .tag {
       display: inline-block;
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 1.1rem;
       color: var(--accent);
       background: rgba(56,189,248,.08);
-      border: 1px solid rgba(56,189,248,.2);
-      padding: 4px 12px;
-      border-radius: 99px;
+      border: 0.1rem solid rgba(56,189,248,.2);
+      padding: 0.4rem 1.2rem;
+      border-radius: 9.9rem;
       letter-spacing: .08em;
-      margin-bottom: 20px;
+      margin-bottom: 2rem;
     }
 
     h1 {
@@ -85,31 +117,31 @@
     .name-accent { color: var(--accent); }
 
     .subtitle {
-      margin-top: 16px;
-      font-size: 1rem;
+      margin-top: 1.6rem;
+      font-size: 1.5rem;
       color: var(--muted);
-      max-width: 560px;
+      max-width: 56rem;
       margin-inline: auto;
       position: relative;
     }
 
     .links {
       display: flex;
-      gap: 12px;
+      gap: 1.2rem;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 32px;
+      margin-top: 3.2rem;
       position: relative;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      border-radius: 8px;
+      gap: 0.8rem;
+      padding: 1rem 2rem;
+      border-radius: 0.8rem;
       font-family: var(--sans);
-      font-size: 13px;
+      font-size: 1.3rem;
       font-weight: 500;
       text-decoration: none;
       transition: all .2s;
@@ -117,358 +149,203 @@
       border: none;
     }
 
-    .btn-primary {
-      background: var(--accent);
-      color: #0a0f1e;
-    }
+    .btn-primary { background: var(--accent); color: #0a0f1e; }
     .btn-primary:hover { background: #7dd3fc; }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
+    .btn-ghost { background: transparent; color: var(--text); border: 0.1rem solid var(--border); }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ── MAIN LAYOUT ── */
+    /* ── MAIN ── */
     main {
-      max-width: 900px;
+      max-width: 90rem;
       margin: 0 auto;
-      padding: 60px 24px 100px;
+      padding: 6rem 2.4rem 10rem;
       display: flex;
       flex-direction: column;
-      gap: 64px;
+      gap: 6.4rem;
     }
 
-    /* ── SECTION ── */
     .section-label {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 1.1rem;
       color: var(--accent);
       letter-spacing: .12em;
       text-transform: uppercase;
-      margin-bottom: 24px;
+      margin-bottom: 2.4rem;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 1.2rem;
     }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
+    .section-label::after { content: ''; flex: 1; height: 0.1rem; background: var(--border); }
 
     /* ── ABOUT ── */
-    .about-text {
-      font-size: 1.05rem;
-      color: #94a3b8;
-      line-height: 1.8;
-      max-width: 720px;
-    }
-
-    .highlight { color: var(--accent); font-weight: 500; }
-    .highlight-green { color: var(--green); font-weight: 500; }
+    .about-text { font-size: 1.6rem; color: #94a3b8; line-height: 1.8; max-width: 72rem; }
+    .highlight        { color: var(--accent);  font-weight: 500; }
+    .highlight-green  { color: var(--green);   font-weight: 500; }
     .highlight-purple { color: var(--accent2); font-weight: 500; }
 
     /* ── SKILLS ── */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+      gap: 1.2rem;
     }
 
     .skill-card {
       background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 18px;
+      border: 0.1rem solid var(--border);
+      border-radius: 1rem;
+      padding: 1.6rem 1.8rem;
       transition: border-color .2s, transform .2s;
     }
-    .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-0.2rem); }
 
     .skill-category {
       font-family: var(--mono);
-      font-size: 10px;
+      font-size: 1rem;
       color: var(--muted);
       letter-spacing: .1em;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 0.8rem;
     }
 
-    .skill-items {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
+    .skill-items { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 
-    .pill {
-      font-size: 12px;
-      font-weight: 500;
-      padding: 3px 10px;
-      border-radius: 99px;
-      background: rgba(56,189,248,.08);
-      color: var(--accent);
-      border: 1px solid rgba(56,189,248,.15);
-      white-space: nowrap;
-    }
-
-    .pill-green {
-      background: rgba(52,211,153,.08);
-      color: var(--green);
-      border-color: rgba(52,211,153,.15);
-    }
-
-    .pill-purple {
-      background: rgba(129,140,248,.08);
-      color: var(--accent2);
-      border-color: rgba(129,140,248,.15);
-    }
-
-    .pill-gray {
-      background: rgba(100,116,139,.1);
-      color: var(--muted);
-      border-color: rgba(100,116,139,.2);
-    }
+    .pill        { font-size:1.2rem;font-weight:500;padding:0.3rem 1rem;border-radius:9.9rem;background:rgba(56,189,248,.08);color:var(--accent);border:0.1rem solid rgba(56,189,248,.15);white-space:nowrap; }
+    .pill-green  { background:rgba(52,211,153,.08);color:var(--green);border-color:rgba(52,211,153,.15); }
+    .pill-purple { background:rgba(129,140,248,.08);color:var(--accent2);border-color:rgba(129,140,248,.15); }
+    .pill-gray   { background:rgba(100,116,139,.1);color:var(--muted);border-color:rgba(100,116,139,.2); }
 
     /* ── PROJECTS ── */
     .project-card {
       background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px;
-      margin-bottom: 16px;
+      border: 0.1rem solid var(--border);
+      border-radius: 1.2rem;
+      padding: 2.8rem;
+      margin-bottom: 1.6rem;
       transition: border-color .2s, transform .2s;
       position: relative;
       overflow: hidden;
     }
-
     .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      opacity: 0;
-      transition: opacity .2s;
+      content:'';position:absolute;top:0;left:0;right:0;
+      height:0.2rem;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      opacity:0;transition:opacity .2s;
     }
+    .project-card:hover { border-color:rgba(56,189,248,.3); transform:translateY(-0.2rem); }
+    .project-card:hover::before { opacity:1; }
 
-    .project-card:hover { border-color: rgba(56,189,248,.3); transform: translateY(-2px); }
-    .project-card:hover::before { opacity: 1; }
-
-    .project-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-
-    .project-name {
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .project-meta {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--green);
-    }
-
-    .project-desc {
-      color: #94a3b8;
-      font-size: .93rem;
-      line-height: 1.7;
-      margin-bottom: 16px;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: var(--accent);
-      text-decoration: none;
-      font-family: var(--mono);
-      margin-top: 12px;
-      transition: gap .2s;
-    }
-    .project-link:hover { gap: 10px; }
+    .project-header { display:flex;align-items:flex-start;justify-content:space-between;gap:1.6rem;flex-wrap:wrap;margin-bottom:1.2rem; }
+    .project-name   { font-size:1.7rem;font-weight:600;color:var(--text); }
+    .project-meta   { font-family:var(--mono);font-size:1.1rem;color:var(--green); }
+    .project-desc   { color:#94a3b8;font-size:1.4rem;line-height:1.7;margin-bottom:1.6rem; }
+    .project-tags   { display:flex;flex-wrap:wrap;gap:0.6rem; }
+    .project-link   { display:inline-flex;align-items:center;gap:0.6rem;font-size:1.2rem;color:var(--accent);text-decoration:none;font-family:var(--mono);margin-top:1.2rem;transition:gap .2s; }
+    .project-link:hover { gap:1rem; }
 
     /* ── VALUES ── */
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 16px;
-    }
-
-    .value-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 24px;
-    }
-
-    .value-icon {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
-    }
-
-    .value-title {
-      font-weight: 600;
-      margin-bottom: 6px;
-      font-size: .95rem;
-    }
-
-    .value-desc {
-      font-size: .85rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .values-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(24rem,1fr));gap:1.6rem; }
+    .value-card  { background:var(--card);border:0.1rem solid var(--border);border-radius:1rem;padding:2.4rem; }
+    .value-icon  { font-size:2.4rem;margin-bottom:1.2rem; }
+    .value-title { font-weight:600;margin-bottom:0.6rem;font-size:1.5rem; }
+    .value-desc  { font-size:1.3rem;color:var(--muted);line-height:1.6; }
 
     /* ── TERMINAL ── */
-    .terminal {
-      background: #0d1117;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      font-family: var(--mono);
-    }
-
-    .terminal-bar {
-      background: var(--surface);
-      padding: 10px 16px;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .dot { width: 12px; height: 12px; border-radius: 50%; }
-    .dot-red { background: #ff5f57; }
-    .dot-yellow { background: #ffbd2e; }
-    .dot-green { background: #28ca42; }
-
-    .terminal-filename {
-      margin-left: 8px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .terminal-body {
-      padding: 20px;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .t-line { display: flex; gap: 8px; }
-    .t-prompt { color: var(--green); user-select: none; }
-    .t-cmd { color: var(--text); }
-    .t-out { color: var(--muted); padding-left: 20px; }
-    .t-key { color: var(--accent); }
-    .t-val { color: var(--accent2); }
-    .t-cursor {
-      display: inline-block;
-      width: 8px; height: 14px;
-      background: var(--accent);
-      animation: blink 1s step-end infinite;
-      vertical-align: middle;
-    }
-
+    .terminal { background:#0d1117;border:0.1rem solid var(--border);border-radius:1rem;overflow:hidden;font-family:var(--mono); }
+    .terminal-bar { background:var(--surface);padding:1rem 1.6rem;display:flex;gap:0.8rem;align-items:center;border-bottom:0.1rem solid var(--border); }
+    .dot        { width:1.2rem;height:1.2rem;border-radius:50%; }
+    .dot-red    { background:#ff5f57; }
+    .dot-yellow { background:#ffbd2e; }
+    .dot-green  { background:#28ca42; }
+    .terminal-filename { margin-left:0.8rem;font-size:1.2rem;color:var(--muted); }
+    .terminal-body { padding:2rem;font-size:1.3rem;line-height:1.8; }
+    .t-line   { display:flex;gap:0.8rem; }
+    .t-prompt { color:var(--green);user-select:none; }
+    .t-cmd    { color:var(--text); }
+    .t-out    { color:var(--muted);padding-left:2rem; }
+    .t-key    { color:var(--accent); }
+    .t-val    { color:var(--accent2); }
+    .t-cursor { display:inline-block;width:0.8rem;height:1.4rem;background:var(--accent);animation:blink 1s step-end infinite;vertical-align:middle; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
     /* ── CONTACT ── */
     .contact-box {
-      text-align: center;
-      padding: 48px 24px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      position: relative;
-      overflow: hidden;
+      text-align:center;padding:4.8rem 2.4rem;
+      background:var(--card);border:0.1rem solid var(--border);border-radius:1.6rem;
+      position:relative;overflow:hidden;
     }
-
-    .contact-box::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(56,189,248,.06), transparent);
-    }
-
-    .contact-box h2 {
-      font-size: 1.6rem;
-      margin-bottom: 8px;
-      position: relative;
-    }
-
-    .contact-box p {
-      color: var(--muted);
-      margin-bottom: 28px;
-      position: relative;
-    }
+    .contact-box::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(56,189,248,.06),transparent); }
+    .contact-box h2 { font-size:2.4rem;margin-bottom:0.8rem;position:relative; }
+    .contact-box p  { color:var(--muted);margin-bottom:2.8rem;font-size:1.4rem;position:relative; }
 
     /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 32px;
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
+    footer { text-align:center;padding:3.2rem;font-family:var(--mono);font-size:1.2rem;color:var(--muted);border-top:0.1rem solid var(--border); }
 
-    /* ── SCROLL ANIMATIONS ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity .5s ease, transform .5s ease;
-    }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    /* ── ANIMATIONS ── */
+    .fade-in { opacity:0;transform:translateY(2rem);transition:opacity .5s ease,transform .5s ease; }
+    .fade-in.visible { opacity:1;transform:translateY(0); }
+
+    /* ── LANG TRANSITION ── */
+    [data-i18n] { transition: opacity .15s ease; }
+    .lang-fade  { opacity: 0 !important; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .values-grid { grid-template-columns: 1fr; }
-      .project-header { flex-direction: column; }
+    @media (max-width:60rem) {
+      header { padding:5rem 1.6rem 4rem; }
+      main   { padding:4rem 1.6rem 6rem;gap:4rem; }
+      .skills-grid { grid-template-columns:1fr 1fr; }
+      .values-grid { grid-template-columns:1fr; }
+      .project-header { flex-direction:column; }
+      .project-card   { padding:2rem; }
+      .lang-toggle    { top:1rem;right:1rem; }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      .fade-in { opacity: 1; transform: none; transition: none; }
-      .t-cursor { animation: none; }
+    @media (max-width:38rem) {
+      .skills-grid { grid-template-columns:1fr; }
+      h1 { font-size:2.8rem; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .fade-in,[data-i18n] { transition:none; }
+      .t-cursor { animation:none; }
+    }
+    @media print {
+      html { font-size:55%; }
+      header { padding:4rem 2.4rem; }
+      .grid-bg,.glow,.lang-toggle { display:none; }
+      .btn { display:none; }
+      body { background:white;color:#111; }
+      :root { --bg:white;--surface:#f8fafc;--card:#f1f5f9;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#0284c7;--accent2:#6366f1;--green:#059669; }
     }
   </style>
 </head>
 <body>
 
+<!-- LANG TOGGLE -->
+<div class="lang-toggle">
+  <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+  <button class="lang-btn"        id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+
 <!-- HEADER -->
 <header>
   <div class="grid-bg"></div>
   <div class="glow"></div>
-  <div class="tag">// open to work · junior fullstack developer</div>
+
+  <div class="tag" data-i18n="tag">// open to work · junior fullstack developer</div>
+
   <h1>Maximo <span class="name-accent">Nicolas</span> Licha</h1>
-  <p class="subtitle">
+
+  <p class="subtitle" data-i18n="subtitle">
     Fullstack Developer enfocado en automatización, integración de IA y código limpio.<br>
     Hago más con menos recursos.
   </p>
+
   <div class="links">
     <a class="btn btn-primary" href="https://github.com/nicolaslicha02" target="_blank" rel="noopener">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <svg width="1.6rem" height="1.6rem" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
       GitHub
     </a>
-    <a class="btn btn-ghost" href="mailto:nicolaslicha30@gmail.com">
-      ✉ Contacto
-    </a>
-    <button class="btn btn-ghost" onclick="downloadCV()">
-      ↓ Descargar CV
-    </button>
+    <a class="btn btn-ghost" href="mailto:maxilicha02@gmail.com" data-i18n="btn-contact">✉ Contacto</a>
+    <button class="btn btn-ghost" onclick="window.print()" data-i18n="btn-download">↓ Descargar CV</button>
   </div>
 </header>
 
@@ -477,8 +354,8 @@
 
   <!-- ABOUT -->
   <section class="fade-in">
-    <div class="section-label">// sobre mí</div>
-    <p class="about-text">
+    <div class="section-label" data-i18n="label-about">// sobre mí</div>
+    <p class="about-text" data-i18n="about-text">
       Soy un desarrollador <span class="highlight">Junior Fullstack</span> con stack centrado en
       <span class="highlight">Angular, .NET, TypeScript y Python</span>. Me interesa construir
       soluciones donde la <span class="highlight-purple">inteligencia artificial</span> y la
@@ -497,37 +374,35 @@
         <span class="dot dot-red"></span>
         <span class="dot dot-yellow"></span>
         <span class="dot dot-green"></span>
-        <span class="terminal-filename">nico.json</span>
+        <span class="terminal-filename">maximo.json</span>
       </div>
       <div class="terminal-body" id="terminal-content">
-        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd"> cat nico.json</span></div>
+        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd"> cat maximo.json</span></div>
       </div>
     </div>
   </section>
 
   <!-- SKILLS -->
   <section class="fade-in">
-    <div class="section-label">// stack tecnológico</div>
+    <div class="section-label" data-i18n="label-stack">// stack tecnológico</div>
     <div class="skills-grid">
       <div class="skill-card">
-        <div class="skill-category">Frontend</div>
+        <div class="skill-category" data-i18n="cat-frontend">Frontend</div>
         <div class="skill-items">
-          <span class="pill">Angular</span>
-          <span class="pill">TypeScript</span>
-          <span class="pill">HTML/CSS</span>
+          <span class="pill">Angular</span><span class="pill">React</span>
+          <span class="pill">TypeScript</span><span class="pill">HTML/CSS</span>
         </div>
       </div>
       <div class="skill-card">
-        <div class="skill-category">Backend</div>
+        <div class="skill-category" data-i18n="cat-backend">Backend</div>
         <div class="skill-items">
-          <span class="pill-green">.NET / C#</span>
-          <span class="pill-green">Python</span>
-          <span class="pill-green">Django</span>
+          <span class="pill-green">.NET / C#</span><span class="pill-green">Python</span>
+          <span class="pill-green">Django</span><span class="pill-green">Node.js</span>
           <span class="pill-green">REST APIs</span>
         </div>
       </div>
       <div class="skill-card">
-        <div class="skill-category">IA & Automatización</div>
+        <div class="skill-category" data-i18n="cat-ai">IA & Automatización</div>
         <div class="skill-items">
           <span class="pill-purple">LLM Integration</span>
           <span class="pill-purple">Prompt Engineering</span>
@@ -535,12 +410,11 @@
         </div>
       </div>
       <div class="skill-card">
-        <div class="skill-category">Herramientas</div>
+        <div class="skill-category" data-i18n="cat-tools">Herramientas</div>
         <div class="skill-items">
-          <span class="pill-gray">Git / GitHub</span>
-          <span class="pill-gray">SQL</span>
-          <span class="pill-gray">Linux</span>
-          <span class="pill-gray">VS Code</span>
+          <span class="pill-gray">Git / GitHub</span><span class="pill-gray">Docker</span>
+          <span class="pill-gray">SQL</span><span class="pill-gray">Linux</span>
+          <span class="pill-gray">CI/CD</span>
         </div>
       </div>
     </div>
@@ -548,42 +422,39 @@
 
   <!-- PROJECTS -->
   <section class="fade-in">
-    <div class="section-label">// proyectos</div>
+    <div class="section-label" data-i18n="label-projects">// proyectos</div>
 
     <div class="project-card">
       <div class="project-header">
         <span class="project-name">🥗 Nutritra</span>
-        <span class="project-meta">· personal project</span>
+        <span class="project-meta" data-i18n="proj1-meta">· personal project</span>
       </div>
-      <p class="project-desc">
+      <p class="project-desc" data-i18n="proj1-desc">
         Plataforma web para nutricionistas y pacientes. El profesional puede cargar planes,
         hacer seguimiento del progreso, subir archivos e interactuar en tiempo real con el paciente.
         Sistema de roles, historial de sesiones y dashboard de evolución nutricional.
       </p>
       <div class="project-tags">
-        <span class="pill-green">Django</span>
-        <span class="pill-green">Python</span>
-        <span class="pill-gray">HTML/CSS</span>
-        <span class="pill-gray">PostgreSQL</span>
+        <span class="pill-green">Django</span><span class="pill-green">Python</span>
+        <span class="pill-gray">HTML/CSS</span><span class="pill-gray">PostgreSQL</span>
         <span class="pill-purple">Roles & Auth</span>
       </div>
-      <a class="project-link" href="https://github.com/nicolaslicha02" target="_blank" rel="noopener">
+      <a class="project-link" href="https://github.com/nicolaslicha02" target="_blank" rel="noopener" data-i18n="proj-link">
         → ver en GitHub
       </a>
     </div>
 
     <div class="project-card">
       <div class="project-header">
-        <span class="project-name">⚡ Próximamente</span>
-        <span class="project-meta">· en desarrollo</span>
+        <span class="project-name" data-i18n="proj2-name">⚡ Próximamente</span>
+        <span class="project-meta" data-i18n="proj2-meta">· en desarrollo</span>
       </div>
-      <p class="project-desc">
+      <p class="project-desc" data-i18n="proj2-desc">
         Explorando proyectos con Angular + .NET e integración de modelos de IA para automatización
         de flujos de trabajo. Stay tuned.
       </p>
       <div class="project-tags">
-        <span class="pill">Angular</span>
-        <span class="pill-green">.NET</span>
+        <span class="pill">Angular</span><span class="pill-green">.NET</span>
         <span class="pill-purple">AI / LLM</span>
       </div>
     </div>
@@ -591,27 +462,27 @@
 
   <!-- VALUES -->
   <section class="fade-in">
-    <div class="section-label">// cómo trabajo</div>
+    <div class="section-label" data-i18n="label-values">// cómo trabajo</div>
     <div class="values-grid">
       <div class="value-card">
         <div class="value-icon">🤖</div>
-        <div class="value-title">IA como herramienta real</div>
-        <div class="value-desc">No solo la uso, entiendo cuándo y cómo integrarla para que aporte valor concreto, no hype.</div>
+        <div class="value-title" data-i18n="v1-title">IA como herramienta real</div>
+        <div class="value-desc"  data-i18n="v1-desc">No solo la uso, entiendo cuándo y cómo integrarla para que aporte valor concreto, no hype.</div>
       </div>
       <div class="value-card">
         <div class="value-icon">⚡</div>
-        <div class="value-title">Eficiencia sobre volumen</div>
-        <div class="value-desc">Código limpio, optimizado y con el menor consumo de recursos posible. Menos es más.</div>
+        <div class="value-title" data-i18n="v2-title">Eficiencia sobre volumen</div>
+        <div class="value-desc"  data-i18n="v2-desc">Código limpio, optimizado y con el menor consumo de recursos posible. Menos es más.</div>
       </div>
       <div class="value-card">
         <div class="value-icon">🔁</div>
-        <div class="value-title">Automatización primero</div>
-        <div class="value-desc">Si algo se puede automatizar, lo automatizo. El tiempo manual es el recurso más caro.</div>
+        <div class="value-title" data-i18n="v3-title">Automatización primero</div>
+        <div class="value-desc"  data-i18n="v3-desc">Si algo se puede automatizar, lo automatizo. El tiempo manual es el recurso más caro.</div>
       </div>
       <div class="value-card">
         <div class="value-icon">📈</div>
-        <div class="value-title">Mentalidad de crecimiento</div>
-        <div class="value-desc">Junior en experiencia, senior en actitud. Aprendo rápido y busco feedback activamente.</div>
+        <div class="value-title" data-i18n="v4-title">Mentalidad de crecimiento</div>
+        <div class="value-desc"  data-i18n="v4-desc">Junior en experiencia, senior en actitud. Aprendo rápido y busco feedback activamente.</div>
       </div>
     </div>
   </section>
@@ -619,18 +490,12 @@
   <!-- CONTACT -->
   <section class="fade-in">
     <div class="contact-box">
-      <h2>¿Hablamos?</h2>
-      <p>Abierto a oportunidades Junior · Fullstack · Remoto o presencial (Argentina)</p>
+      <h2 data-i18n="contact-title">¿Hablamos?</h2>
+      <p  data-i18n="contact-sub">Abierto a oportunidades Junior · Fullstack · Remoto o presencial (Argentina)</p>
       <div class="links">
-        <a class="btn btn-primary" href="https://github.com/nicolaslicha02" target="_blank" rel="noopener">
-          Ver GitHub
-        </a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/nicolas-licha/" target="_blank" rel="noopener">
-          LinkedIn
-        </a>
-        <a class="btn btn-ghost" href="mailto:nicolaslicha30@gmail.com">
-          Enviar mail
-        </a>
+        <a class="btn btn-primary" href="https://github.com/nicolaslicha02" target="_blank" rel="noopener" data-i18n="contact-gh">Ver GitHub</a>
+        <a class="btn btn-ghost"   href="https://linkedin.com/in/maximo-licha" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost"   href="mailto:maxilicha02@gmail.com" data-i18n="contact-mail">Enviar mail</a>
       </div>
     </div>
   </section>
@@ -638,41 +503,146 @@
 </main>
 
 <footer>
-  <span>built by</span>
+  <span data-i18n="footer-built">built by</span>
   <span style="color:var(--accent)"> maximo nicolas licha</span>
-  <span> · </span>
-  <span>open source ·</span>
-  <a href="https://github.com/nicolaslicha02" style="color:var(--muted);text-decoration:none;" target="_blank"> github.com/nicolaslicha02</a>
+  <span> · open source · </span>
+  <a href="https://github.com/nicolaslicha02" style="color:var(--muted);text-decoration:none;" target="_blank">github.com/nicolaslicha02</a>
 </footer>
 
 <script>
-  // ── Scroll animations
+  /* ────────────────────────────────────────────
+     TRANSLATIONS
+  ──────────────────────────────────────────── */
+  const i18n = {
+    es: {
+      'tag':           '// open to work · junior fullstack developer',
+      'subtitle':      'Fullstack Developer enfocado en automatización, integración de IA y código limpio.<br>Hago más con menos recursos.',
+      'btn-contact':   '✉ Contacto',
+      'btn-download':  '↓ Descargar CV',
+      'label-about':   '// sobre mí',
+      'about-text':    'Soy un desarrollador <span class="highlight">Junior Fullstack</span> con stack centrado en <span class="highlight">Angular, .NET, TypeScript y Python</span>. Me interesa construir soluciones donde la <span class="highlight-purple">inteligencia artificial</span> y la <span class="highlight-green">automatización</span> permiten hacer más trabajo con menos código redundante y menos recursos computacionales.<br><br>Entiendo que el código de calidad no se mide en líneas, sino en <span class="highlight">eficiencia, mantenibilidad y escalabilidad</span>. Busco equipos que valoren pensar antes de tipear.',
+      'label-stack':   '// stack tecnológico',
+      'cat-frontend':  'Frontend',
+      'cat-backend':   'Backend',
+      'cat-ai':        'IA & Automatización',
+      'cat-tools':     'Herramientas',
+      'label-projects':'// proyectos',
+      'proj1-meta':    '· proyecto personal',
+      'proj1-desc':    'Plataforma web para nutricionistas y pacientes. El profesional puede cargar planes, hacer seguimiento del progreso, subir archivos e interactuar en tiempo real con el paciente. Sistema de roles, historial de sesiones y dashboard de evolución nutricional.',
+      'proj-link':     '→ ver en GitHub',
+      'proj2-name':    '⚡ Próximamente',
+      'proj2-meta':    '· en desarrollo',
+      'proj2-desc':    'Explorando proyectos con Angular + .NET e integración de modelos de IA para automatización de flujos de trabajo. Stay tuned.',
+      'label-values':  '// cómo trabajo',
+      'v1-title':      'IA como herramienta real',
+      'v1-desc':       'No solo la uso, entiendo cuándo y cómo integrarla para que aporte valor concreto, no hype.',
+      'v2-title':      'Eficiencia sobre volumen',
+      'v2-desc':       'Código limpio, optimizado y con el menor consumo de recursos posible. Menos es más.',
+      'v3-title':      'Automatización primero',
+      'v3-desc':       'Si algo se puede automatizar, lo automatizo. El tiempo manual es el recurso más caro.',
+      'v4-title':      'Mentalidad de crecimiento',
+      'v4-desc':       'Junior en experiencia, senior en actitud. Aprendo rápido y busco feedback activamente.',
+      'contact-title': '¿Hablamos?',
+      'contact-sub':   'Abierto a oportunidades Junior · Fullstack · Remoto o presencial (Argentina)',
+      'contact-gh':    'Ver GitHub',
+      'contact-mail':  'Enviar mail',
+      'footer-built':  'built by',
+    },
+    en: {
+      'tag':           '// open to work · junior fullstack developer',
+      'subtitle':      'Fullstack Developer focused on automation, AI integration, and clean code.<br>I do more with fewer resources.',
+      'btn-contact':   '✉ Contact',
+      'btn-download':  '↓ Download CV',
+      'label-about':   '// about me',
+      'about-text':    'I\'m a <span class="highlight">Junior Fullstack Developer</span> with a stack centered on <span class="highlight">Angular, .NET, TypeScript, and Python</span>. I\'m passionate about building solutions where <span class="highlight-purple">artificial intelligence</span> and <span class="highlight-green">automation</span> allow doing more with less redundant code and fewer computational resources.<br><br>I believe code quality is not measured in lines, but in <span class="highlight">efficiency, maintainability, and scalability</span>. I\'m looking for teams that value thinking before typing.',
+      'label-stack':   '// tech stack',
+      'cat-frontend':  'Frontend',
+      'cat-backend':   'Backend',
+      'cat-ai':        'AI & Automation',
+      'cat-tools':     'Tools',
+      'label-projects':'// projects',
+      'proj1-meta':    '· personal project',
+      'proj1-desc':    'Web platform connecting nutritionists and patients. The professional can upload meal plans, track patient progress, share files, and interact in real time. Features role-based access, session history, and a nutritional evolution dashboard.',
+      'proj-link':     '→ view on GitHub',
+      'proj2-name':    '⚡ Coming Soon',
+      'proj2-meta':    '· in development',
+      'proj2-desc':    'Exploring projects with Angular + .NET and AI model integration to automate workflows. Stay tuned.',
+      'label-values':  '// how I work',
+      'v1-title':      'AI as a real tool',
+      'v1-desc':       'I don\'t just use it — I understand when and how to integrate it to deliver real value, not hype.',
+      'v2-title':      'Efficiency over volume',
+      'v2-desc':       'Clean, optimized code with the lowest possible resource footprint. Less is more.',
+      'v3-title':      'Automation first',
+      'v3-desc':       'If something can be automated, I automate it. Manual time is the most expensive resource.',
+      'v4-title':      'Growth mindset',
+      'v4-desc':       'Junior in experience, senior in attitude. I learn fast and actively seek feedback.',
+      'contact-title': 'Let\'s talk?',
+      'contact-sub':   'Open to Junior opportunities · Fullstack · Remote or on-site (Argentina)',
+      'contact-gh':    'View GitHub',
+      'contact-mail':  'Send email',
+      'footer-built':  'built by',
+    }
+  };
+
+  let currentLang = 'es';
+
+  function setLang(lang) {
+    if (lang === currentLang) return;
+    currentLang = lang;
+
+    // Update html lang attr
+    document.documentElement.lang = lang;
+
+    // Toggle button states
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+    // Fade out all translatable elements
+    const els = document.querySelectorAll('[data-i18n]');
+    els.forEach(el => el.classList.add('lang-fade'));
+
+    setTimeout(() => {
+      els.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key] !== undefined) {
+          el.innerHTML = i18n[lang][key];
+        }
+      });
+      els.forEach(el => el.classList.remove('lang-fade'));
+    }, 150);
+  }
+
+  /* ────────────────────────────────────────────
+     SCROLL ANIMATIONS
+  ──────────────────────────────────────────── */
   const observer = new IntersectionObserver(
     entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
     { threshold: 0.1 }
   );
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  // ── Terminal typewriter
-  const data = {
-    nombre: "Maximo Nicolas Licha",
-    rol: "Junior Fullstack Developer",
-    stack: ["Angular", ".NET", "TypeScript", "Python", "Django"],
-    intereses: ["IA & Automatización", "Código eficiente", "Sistemas escalables"],
-    disponible: true,
-    github: "github.com/nicolaslicha02",
-    ubicacion: "Argentina 🇦🇷"
+  /* ────────────────────────────────────────────
+     TERMINAL TYPEWRITER
+  ──────────────────────────────────────────── */
+  const profile = {
+    name:      "Maximo Nicolas Licha",
+    role:      "Junior Fullstack Developer",
+    stack:     ["Angular", "React", ".NET", "TypeScript", "Python", "Django", "Node.js"],
+    interests: ["AI & Automation", "Clean code", "Scalable systems"],
+    available: true,
+    github:    "github.com/nicolaslicha02",
+    location:  "Argentina 🇦🇷"
   };
 
   const lines = [
     `{`,
-    `  <span class="t-key">"nombre"</span>:      <span class="t-val">"${data.nombre}"</span>,`,
-    `  <span class="t-key">"rol"</span>:         <span class="t-val">"${data.rol}"</span>,`,
-    `  <span class="t-key">"stack"</span>:       <span class="t-val">["${data.stack.join('", "')}"</span><span class="t-val">]</span>,`,
-    `  <span class="t-key">"intereses"</span>:   <span class="t-val">["${data.intereses.join('", "')}"</span><span class="t-val">]</span>,`,
-    `  <span class="t-key">"disponible"</span>:  <span style="color:var(--green)">true</span>,`,
-    `  <span class="t-key">"github"</span>:      <span class="t-val">"${data.github}"</span>,`,
-    `  <span class="t-key">"ubicacion"</span>:   <span class="t-val">"${data.ubicacion}"</span>`,
+    `  <span class="t-key">"name"</span>:      <span class="t-val">"${profile.name}"</span>,`,
+    `  <span class="t-key">"role"</span>:      <span class="t-val">"${profile.role}"</span>,`,
+    `  <span class="t-key">"stack"</span>:     <span class="t-val">["${profile.stack.join('", "')}"</span><span class="t-val">]</span>,`,
+    `  <span class="t-key">"interests"</span>: <span class="t-val">["${profile.interests.join('", "')}"</span><span class="t-val">]</span>,`,
+    `  <span class="t-key">"available"</span>: <span style="color:var(--green)">true</span>,`,
+    `  <span class="t-key">"github"</span>:    <span class="t-val">"${profile.github}"</span>,`,
+    `  <span class="t-key">"location"</span>:  <span class="t-val">"${profile.location}"</span>`,
     `}`
   ];
 
@@ -695,34 +665,8 @@
     setTimeout(addLine, 80);
   }
 
-  // Start terminal after a short delay
   setTimeout(addLine, 600);
-
-  // ── Download CV (simple print)
-  function downloadCV() {
-    window.print();
-  }
 </script>
-
-<style>
-@media print {
-  header { padding: 40px 24px; }
-  .grid-bg, .glow { display: none; }
-  .btn { display: none; }
-  body { background: white; color: #111; }
-  :root {
-    --bg: white;
-    --surface: #f8fafc;
-    --card: #f1f5f9;
-    --border: #e2e8f0;
-    --text: #1e293b;
-    --muted: #64748b;
-    --accent: #0284c7;
-    --accent2: #6366f1;
-    --green: #059669;
-  }
-}
-</style>
 
 </body>
 </html>
