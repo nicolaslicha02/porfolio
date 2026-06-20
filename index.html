@@ -307,25 +307,39 @@
       .fade-in,[data-i18n] { transition:none; }
       .t-cursor { animation:none; }
     }
+    
     @media print {
       html { font-size:55%; }
       header { padding:4rem 2.4rem; }
-      .grid-bg,.glow,.lang-toggle { display:none; }
-      .btn { display:none; }
-      body { background:white;color:#111; }
-      :root { --bg:white;--surface:#f8fafc;--card:#f1f5f9;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#0284c7;--accent2:#6366f1;--green:#059669; }
+      .grid-bg, .glow, .lang-toggle, .btn { display:none; }
+      body { background:white; color:#111; }
+      :root { --bg:white; --surface:#f8fafc; --card:#f1f5f9; --border:#e2e8f0; --text:#1e293b; --muted:#64748b; --accent:#0284c7; --accent2:#6366f1; --green:#059669; }
+      
+      .fade-in { 
+        opacity: 1 !important; 
+        transform: none !important; 
+        transition: none !important;
+      }
+      
+      .terminal {
+        background: #f8fafc;
+        border: 0.1rem solid #e2e8f0;
+      }
+      
+      .skill-card, .project-card, .value-card, .contact-box {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- LANG TOGGLE -->
 <div class="lang-toggle">
   <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
   <button class="lang-btn"        id="btn-en" onclick="setLang('en')">EN</button>
 </div>
 
-<!-- HEADER -->
 <header>
   <div class="grid-bg"></div>
   <div class="glow"></div>
@@ -349,15 +363,13 @@
   </div>
 </header>
 
-<!-- MAIN -->
 <main>
 
-  <!-- ABOUT -->
   <section class="fade-in">
     <div class="section-label" data-i18n="label-about">// sobre mí</div>
     <p class="about-text" data-i18n="about-text">
       Soy un desarrollador <span class="highlight">Junior Fullstack</span> con stack centrado en
-      <span class="highlight">Angular, .NET, TypeScript y Python</span>. Me interesa construir
+      <span class="highlight">Angular, React, .NET, TypeScript y Python</span>. Me interesa construir
       soluciones donde la <span class="highlight-purple">inteligencia artificial</span> y la
       <span class="highlight-green">automatización</span> permiten hacer más trabajo con menos
       código redundante y menos recursos computacionales.<br><br>
@@ -367,7 +379,6 @@
     </p>
   </section>
 
-  <!-- TERMINAL -->
   <section class="fade-in">
     <div class="terminal">
       <div class="terminal-bar">
@@ -382,7 +393,6 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section class="fade-in">
     <div class="section-label" data-i18n="label-stack">// stack tecnológico</div>
     <div class="skills-grid">
@@ -420,7 +430,6 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section class="fade-in">
     <div class="section-label" data-i18n="label-projects">// proyectos</div>
 
@@ -460,7 +469,6 @@
     </div>
   </section>
 
-  <!-- VALUES -->
   <section class="fade-in">
     <div class="section-label" data-i18n="label-values">// cómo trabajo</div>
     <div class="values-grid">
@@ -487,7 +495,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section class="fade-in">
     <div class="contact-box">
       <h2 data-i18n="contact-title">¿Hablamos?</h2>
@@ -511,7 +518,7 @@
 
 <script>
   /* ────────────────────────────────────────────
-     TRANSLATIONS
+      TRANSLATIONS
   ──────────────────────────────────────────── */
   const i18n = {
     es: {
@@ -520,7 +527,7 @@
       'btn-contact':   '✉ Contacto',
       'btn-download':  '↓ Descargar CV',
       'label-about':   '// sobre mí',
-      'about-text':    'Soy un desarrollador <span class="highlight">Junior Fullstack</span> con stack centrado en <span class="highlight">Angular, .NET, TypeScript y Python</span>. Me interesa construir soluciones donde la <span class="highlight-purple">inteligencia artificial</span> y la <span class="highlight-green">automatización</span> permiten hacer más trabajo con menos código redundante y menos recursos computacionales.<br><br>Entiendo que el código de calidad no se mide en líneas, sino en <span class="highlight">eficiencia, mantenibilidad y escalabilidad</span>. Busco equipos que valoren pensar antes de tipear.',
+      'about-text':    'Soy un desarrollador <span class="highlight">Junior Fullstack</span> con stack centrado en <span class="highlight">Angular, React, .NET, TypeScript y Python</span>. Me interesa construir soluciones donde la <span class="highlight-purple">inteligencia artificial</span> y la <span class="highlight-green">automatización</span> permiten hacer más trabajo con menos código redundante y menos recursos computacionales.<br><br>Entiendo que el código de calidad no se mide en líneas, sino en <span class="highlight">eficiencia, mantenibilidad y escalabilidad</span>. Busco equipos que valoren pensar antes de tipear.',
       'label-stack':   '// stack tecnológico',
       'cat-frontend':  'Frontend',
       'cat-backend':   'Backend',
@@ -554,7 +561,7 @@
       'btn-contact':   '✉ Contact',
       'btn-download':  '↓ Download CV',
       'label-about':   '// about me',
-      'about-text':    'I\'m a <span class="highlight">Junior Fullstack Developer</span> with a stack centered on <span class="highlight">Angular, .NET, TypeScript, and Python</span>. I\'m passionate about building solutions where <span class="highlight-purple">artificial intelligence</span> and <span class="highlight-green">automation</span> allow doing more with less redundant code and fewer computational resources.<br><br>I believe code quality is not measured in lines, but in <span class="highlight">efficiency, maintainability, and scalability</span>. I\'m looking for teams that value thinking before typing.',
+      'about-text':    'I\'m a <span class="highlight">Junior Fullstack Developer</span> with a stack centered on <span class="highlight">Angular, React, .NET, TypeScript, and Python</span>. I\'m passionate about building solutions where <span class="highlight-purple">artificial intelligence</span> and <span class="highlight-green">automation</span> allow doing more with less redundant code and fewer computational resources.<br><br>I believe code quality is not measured in lines, but in <span class="highlight">efficiency, maintainability, and scalability</span>. I\'m looking for teams that value thinking before typing.',
       'label-stack':   '// tech stack',
       'cat-frontend':  'Frontend',
       'cat-backend':   'Backend',
@@ -613,7 +620,7 @@
   }
 
   /* ────────────────────────────────────────────
-     SCROLL ANIMATIONS
+      SCROLL ANIMATIONS
   ──────────────────────────────────────────── */
   const observer = new IntersectionObserver(
     entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
@@ -622,7 +629,7 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   /* ────────────────────────────────────────────
-     TERMINAL TYPEWRITER
+      TERMINAL TYPEWRITER
   ──────────────────────────────────────────── */
   const profile = {
     name:      "Maximo Nicolas Licha",
